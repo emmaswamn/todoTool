@@ -26,13 +26,15 @@ class EditorView extends View{
                 if(e.target.closest('.editor--show')){
                     // 渲染Input
                     // 但是title的Input disable，不可更改
-                    console.log('input');
+                    // console.log('input');
                     this.render(this._data,true);
                     const name = document.querySelector('.editor__title');
                     const time = document.querySelector('.editor__date-input');
+                    const desc = document.querySelector('.editor__description-detail');
                     
                     name.value = this._data.name;
                     time.value = this._data.time;
+                    desc.value = this._data.description;
                     name.setAttribute('disabled','disabled');
 
                     return;
@@ -44,6 +46,8 @@ class EditorView extends View{
                     if(!inputVal) return;
                     // 如果相同，直接渲染div
                     // console.log(inputVal.description);
+                    // console.log(inputVal.time,this._data.time);
+                    // console.log(inputVal.description,this._data.description);
                     if(inputVal.time === this._data.time && inputVal.description === this._data.description){
                         this.render(this._data,false);
                         return;
@@ -125,7 +129,7 @@ class EditorView extends View{
     }
 
     _generateMarkup(data,input,clear){
-        console.log(data.isDone);
+        // console.log(data.isDone);
         if(clear) return'';
         if(input) return`
         <div class="editor--input">
