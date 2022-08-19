@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="img/astronaut.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="module" src="js/controller.js"></script>
+    <title>Todolist</title> 
+</head>
+<body>
+    <div class="modal confirm--edit hidden">
+        <button class="close-modal">&times;</button>
+        <h1>是否确定修改？</h1>
+        <div class="btn-group">
+            <button class="btn--yes btn--confirm">是</button>
+            <button class="btn--no btn--confirm">否</button>
+        </div>
+    </div>
+    <div class="modal confirm--add hidden">
+        <button class="close-modal">&times;</button>
+        <h1>是否确定增加？</h1>
+        <div class="btn-group">
+            <button class="btn--yes btn--confirm">是</button>
+            <button class="btn--no btn--confirm">否</button>
+        </div>
+    </div>
+    <div class="modal confirm--done hidden">
+        <button class="close-modal">&times;</button>
+        <h1>是否确定完成？</h1>
+        <div class="btn-group">
+            <button class="btn--yes btn--confirm">是</button>
+            <button class="btn--no btn--confirm">否</button>
+        </div>
+    </div>
+    <div class="modal confirm--delete hidden">
+        <button class="close-modal">&times;</button>
+        <h1>是否确定删除分类？</h1>
+        <div class="btn-group">
+            <button class="btn--yes btn--confirm">是</button>
+            <button class="btn--no btn--confirm">否</button>
+        </div>
+    </div>
+    <div class="overlay hidden"></div>
+    <div class="container">
+        <header class="header">
+            <img class="header__img" src="img/galaxy.png" alt="">
+            <h1 class="header__title">GTD Tools</h1>
+        </header>
+
+        <div class="folders">
+            <h2 class="folders__title">所有任务(11)</h2>
+            <div class="folder__classes">
+                <h3>分类列表</h3>
+                <div class="folder__icon addtast" title="新增任务">
+                    <svg class="icon addtask">
+                        <use xlink:href="img/sprite.svg#添加文件"></use>
+                    </svg>
+                </div>
+                <div class="folder__icon addfolder" title="新增文件夹">
+                    <svg class="icon addfolder">
+                        <use xlink:href="img/sprite.svg#添加文件夹"></use>
+                    </svg>
+                </div>
+            </div>
+            <ul class="folder__lists">
+<!--                 <li class="folder__main">
+                    <span class="folder__title folder__title--active" data-num="2">
+                        <div class="folder__group">
+                            <svg class="icon icon--folder">
+                                <use xlink:href="img/sprite.svg#文件夹"></use>
+                            </svg>
+                            <h4 class="folder__name">百度IFE项目(<span class="number">0</span>)</h4>
+                        </div>
+                        <svg class="icon icon--delete">
+                            <use xlink:href="img/sprite.svg#错误"></use>
+                        </svg>
+                    </span>
+                    <ul class="folder__list-items"> -->
+                        <!-- <form class="form">
+                            <li>
+                                <input type="text" class="nameInput" maxlength="20">
+                            </li>
+                            <button type="submit" class="hidden"></button>
+                        </form> -->
+<!--                         <li class="folder__secondary">
+                                <span class="folder__title" data-num="2">
+                                    <div class="folder__group">
+                                        <svg class="icon icon--folder">
+                                            <use xlink:href="img/sprite.svg#文件夹"></use>
+                                        </svg>
+                                        <h4 class="folder__name">新建文件夹(<span class="number">0</span>)</h4>
+                                    </div>
+                                    <svg class="icon icon--delete hidden">
+                                        <use xlink:href="img/sprite.svg#错误"></use>
+                                    </svg>
+                                </span>
+                            <ul class="folder__list-items">
+                                <li class="task" data-num="2">
+                                    <svg class="icon">
+                                        <use xlink:href="img/sprite.svg#文件"></use>
+                                    </svg>
+                                    <h5 class="task__name">task3(<span class="number">1</span>)</h5>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="task" data-num="2">
+                            <svg class="icon">
+                                <use xlink:href="img/sprite.svg#文件"></use>
+                            </svg>
+                            <h5 class="task__name">task1(<span class="number">1</span>)</h5>
+                        </li>
+                        <li class="task" data-num="2">
+                            <svg class="icon">
+                                <use xlink:href="img/sprite.svg#文件"></use>
+                            </svg>
+                            <h5 class="task__name">task2(<span class="number">1</span>)</h5>
+                        </li>
+                    </ul>
+                </li>
+                <li class="folder__main">
+                    <span class="folder__title" data-num="2">
+                        <div class="folder__group">
+                            <svg class="icon icon--folder">
+                                <use xlink:href="img/sprite.svg#文件夹"></use>
+                            </svg>
+                            <h4 class="folder__name">毕业设计(<span class="number">0</span>)</h4>
+                        </div>
+                        <svg class="icon icon--delete hidden">
+                            <use xlink:href="img/sprite.svg#错误"></use>
+                        </svg>
+                    </span>
+                </li>
+                <li class="folder__main folder__main-fixed">
+                    <span class="folder__title" data-num="2">
+                        <div class="folder__group">
+                            <svg class="icon icon--folder">
+                                <use xlink:href="img/sprite.svg#文件夹"></use>
+                            </svg>
+                            <h4 class="folder__name">默认分类(<span class="number">0</span>)</h4>
+                        </div>
+                        <svg class="icon icon--delete hidden">
+                            <use xlink:href="img/sprite.svg#错误"></use>
+                        </svg>
+                    </span>
+                </li> -->
+            </ul>
+        </div>
+
+        <div class="tasklists">
+            <div class="btn-group btn--todo">
+                <button class="btn btn--active">所有</button>
+                <button class="btn">未完成</button>
+                <button class="btn">已完成</button>
+            </div>
+            <div class="todolist-area">
+                <ul class="todolist">
+<!--                     <li class="todolist__item">
+                        <div class="todo__date">2015-04-30</div>
+                        <ul class="todo__items">
+                            <li class="todo__item">todo 1</li>
+                            <li class="todo__item">todo 2</li>
+                            <li class="todo__item">todo 3</li>
+                        </ul>
+                    </li>
+                    <li class="todolist__item">
+                        <div class="todo__date">2015-05-30</div>
+                        <ul class="todo__items">
+                            <li class="todo__item todo__item--done">todo 2</li>
+                            <li class="todo__item todo__item--undo">todo 3</li>
+                            <li class="todo__item todo__item--clicked">todo 4</li>
+                        </ul>
+                    </li>
+                    <li class="todolist__item">
+                        <div class="todo__date">2015-05-30</div>
+                        <ul class="todo__items">
+                            <li class="todo__item todo__item--done">todo 2</li>
+                            <li class="todo__item todo__item--undo">todo 3</li>
+                            <li class="todo__item todo__item--clicked">todo 4</li>
+                        </ul>
+                    </li>
+                    <li class="todolist__item">
+                        <div class="todo__date">2015-05-30</div>
+                        <ul class="todo__items">
+                            <li class="todo__item todo__item--done">todo 2</li>
+                            <li class="todo__item todo__item--undo">todo 3</li>
+                            <li class="todo__item todo__item--clicked">todo 4</li>
+                        </ul>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="tasklists__add" title="添加todo">
+                <svg class="tasklists__add-btn">
+                    <use xlink:href="img/sprite.svg#添加_填充"></use>
+                </svg>
+            </div>
+        </div>
+
+        <form class="editor">
+            <!-- <div class="editor--show  hidden">
+                <div class="editor__header">
+                    <span class="editor__title"></span>
+                    <div class="icon-group">
+                        <svg class="icon icon--done">
+                            <use xlink:href="img/sprite.svg#完成"></use>
+                        </svg>
+                        </svg><svg class="icon icon--edit">
+                            <use xlink:href="img/sprite.svg#编辑"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="editor__date">
+                    <label class="editor__date-label" for="start-date">任务日期：</label>
+                    <span class="editor__date-input"></span>
+                </div>
+                <div class="editor__description">
+                    <div class="editor__description-detail"></div>
+                </div>
+            </div>
+            <div class="editor--input">
+                <div class="editor__header">
+                    <input class="editor__title" type="text" maxlength="10" placeholder="to-do x">
+                    <div class="icon-group">
+                        <svg class="icon icon--done">
+                            <use xlink:href="img/sprite.svg#完成"></use>
+                        </svg>
+                        </svg><svg class="icon icon--edit">
+                            <use xlink:href="img/sprite.svg#编辑"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="editor__date">
+                    <label class="editor__date-label" for="start-date">任务日期：</label>
+                    <input class="editor__date-input" type="text" name="start-date" id="start-date"
+                    placeholder="yyyy-mm-dd">
+                </div>
+                <div class="editor__description">
+                    <textarea class="editor__description-detail" maxlength="200">读完课程</textarea>
+                </div>
+            </div> -->
+        </form>
+        
+    </div>
+<!--     <svg class="icon">
+        <use xlink:href="#文件夹"></use>
+    </svg>
+    <svg class="icon">
+        <use xlink:href="#文件"></use>
+    </svg><svg class="icon">
+        <use xlink:href="#编辑"></use>
+    </svg>
+    <svg class="icon">
+        <use xlink:href="#完成"></use>
+    </svg>
+    <svg class="icon">
+        <use xlink:href="#错误"></use>
+    </svg>
+    <svg class="icon">
+        <use xlink:href="#添加文件夹"></use>
+    </svg>
+    <svg class="icon">
+        <use xlink:href="#添加文件"></use>
+    </svg> -->
+</body>
+</html>
